@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Insertion</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    #successMessage {
+      color: green;
+      margin-top: 10px;
+      position: relative;
+      display: none;
+      left: 400px;
+      padding: 10px;
+      border: 1px solid #4CAF50;
+      background-color: #DFF2BF;
+width: 200px;
+height: 200px;
+    }
+
+    .closeIcon {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+    }
+    .tx{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    
+    }
+  </style>
+</head>
+<body>
+<div class="tx">
+  <label for="name">Name:</label>
+  <input type="text" id="name">
+
+  <label for="age">Age:</label>
+  <input type="text" id="age">
+
+  <label for="email">Email:</label>
+  <input type="text" id="email">
+
+  <button onclick="insertIntoTable()">Insert into Table</button>
+</div>
+<div id="successMessage">
+    Insertion successful!
+    <span class="closeIcon" onclick="closeMessage()"> &#10006; </span>
+  </div>
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+     
+    </tbody>
+  </table>
+
+ 
+
+  <script>
+    function insertIntoTable() {
+   
+      var name = document.getElementById("name").value;
+      var age = document.getElementById("age").value;
+      var email = document.getElementById("email").value;
+
+      
+      if (name === "" || age === "" || email === "") {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      // Create a new row and cells
+      var table = document.getElementById("dataTable");
+      var newRow = table.insertRow(table.rows.length);
+      var cell1 = newRow.insertCell(0);
+      var cell2 = newRow.insertCell(1);
+      var cell3 = newRow.insertCell(2);
+
+      
+      cell1.innerHTML = name;
+      cell2.innerHTML = age;
+      cell3.innerHTML = email;
+
+    
+      document.getElementById("name").value = "";
+      document.getElementById("age").value = "";
+      document.getElementById("email").value = "";
+
+    
+      var successMessage = document.getElementById("successMessage");
+      successMessage.style.display = "block";
+    }
+
+    function closeMessage() {
+      var successMessage = document.getElementById("successMessage");
+      successMessage.style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
